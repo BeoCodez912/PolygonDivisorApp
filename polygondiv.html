@@ -1,0 +1,45 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Polygon Divisor App</title>
+  <script src="https://cdn.jsdelivr.net/npm/web3/dist/web3.min.js"></script>
+  <style>
+    body { font-family: Arial; background: #f3f3f3; text-align: center; }
+    button, input { margin: 5px; padding: 10px; font-size: 14px; }
+    #logArea {
+      width: 90%; height: 250px; margin: 10px auto; border: 1px solid #ccc;
+      background: #fff; overflow-y: auto; white-space: pre-line;
+      text-align: left; padding: 10px;
+    }
+    #statusIndicator { padding: 10px; font-weight: bold; border-radius: 5px; }
+    .success { background: #d4edda; color: #155724; }
+    .error { background: #f8d7da; color: #721c24; }
+    .info { background: #d1ecf1; color: #0c5460; }
+  </style>
+</head>
+<body>
+  <h2>Polygon Divisor Contract Interface</h2>
+  <button onclick="connectWallet()">Connect Wallet</button>
+  <p>Wallet: <span id="walletAddress">Not Connected</span> <button onclick="copyToClipboard('walletAddress')">Copy</button></p>
+  <p>Balance: <span id="walletBalance">Checking...</span> <button onclick="copyToClipboard('walletBalance')">Copy</button></p>
+  <div id="statusIndicator">Status: Waiting...</div>  <input id="depositAmount" placeholder="Enter MATIC (max 0.9)" />
+  <button onclick="depositDivisor()">Deposit Divisor</button>
+  <button onclick="depositMultiplier()">Deposit Multiplier</button><br/>  <input id="multiplierAmount" placeholder="Enter multiplier (2-90)" />
+  <button onclick="applyMultiplier()">Apply Multiplier</button>
+  <button onclick="applyDivisor()">Apply Divisor</button>  <h3>Withdrawals</h3>
+  <button onclick="sendTx('withdrawDivisorAmount')">Withdraw Divisor Amount</button>
+  <button onclick="sendTx('withdrawDivisorDeposit')">Withdraw Deposit</button>
+  <button onclick="sendTx('withdrawDivisoredAmount')">Withdraw Divisored Amount</button>
+  <button onclick="sendTx('withdrawToWallet')">Withdraw to Wallet</button>
+  <button onclick="sendTx('withdrawMultiplierAmount')">Withdraw Multiplier Amount</button>  <h3>Referral</h3>
+  <input id="referralInput" placeholder="Enter Referral Code" />
+  <button onclick="saveReferral()">Save Referral</button>
+  <p>Saved: <span id="savedReferral">None</span> <button onclick="copyToClipboard('savedReferral')">Copy</button></p>
+  <button onclick="sendTxWithParam('logInvite', document.getElementById('referralInput').value)">Log Invite</button>  <h3>Mining</h3>
+  <p>Streak: <span id="miningStreak">0</span></p>
+  <p>Next Mining In: <span id="miningTimer">00:00:00</span></p>
+  <button onclick="startMining()">Start Mining</button>  <h3>Logs</h3>
+  <div id="logArea"></div>
+  <button onclick="clearLogs()">Clear Logs</button></body>
+</html>
