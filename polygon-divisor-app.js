@@ -2,7 +2,6 @@
 const contractAddress = "0x97AeB4617851fbCe188fC9940AE9E472621b49Ca";
 let web3, contract, userAccount;
 let miningEndTime = parseInt(localStorage.getItem("miningEndTime") || "0");
-const abi = [/* EMBEDDED FULL ABI GOES HERE */];
 
 async function connectWallet() {
   if (!window.ethereum) return alert("Install MetaMask");
